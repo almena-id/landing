@@ -1,4 +1,6 @@
 ---
+import Analytics from "@vercel/analytics/astro";
+
 // The launch moment: midnight in Madrid (CET, UTC+1) on 11 November 2026.
 const LAUNCH = "2026-11-11T00:00:00+01:00";
 const launchLabel = "November 11, 2026";
@@ -32,6 +34,7 @@ const units = [
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://almena.id/og-image.png" />
     <meta name="twitter:card" content="summary" />
+    <Analytics />
   </head>
   <body>
     <main>
