@@ -1,0 +1,10 @@
+name: almena-landing
+
+services:
+  web:
+    build:
+      context: .
+    image: almena-landing:dev
+    restart: unless-stopped
+    ports:
+      - "${LANDING_PORT:-4321}:8080"

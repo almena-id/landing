@@ -1,0 +1,15 @@
+# Almena ID landing page — notes for contributors and agents
+
+The public face of the project at `almena.id` and `www.almena.id`: the logo, the name, a countdown to the launch and a link to the GitHub organisation. A static site built with Astro; `astro build` writes plain files to `dist/`, and the Docker image serves them with nginx.
+
+## Layout
+
+- `src/pages/index.astro` — the one page: markup, the countdown script and its styles. The launch moment is `LAUNCH` at the top (midnight in Madrid, 11 November 2026); once it passes, the countdown gives way to "We are live."
+- `public/` — served as is: `favicon.svg` (the logo, as in `../registry/app/icon.svg`), `apple-touch-icon.png` and `og-image.png` (from `../wallet/assets/branding`).
+- `nginx.conf` — the container's server: the files from `dist/`, `/health`, long caching for `/_astro/`.
+
+## Rules
+
+- Everything is written in English.
+- `almena.id` is also the identity domain: the edge sends the DID paths (`/.well-known/*`, `/ids/*`, `/{slug}/did.json`) to the API, and only the rest to this site. The page must not use those paths.
+- Tasks live in `Taskfile.yml` (`task --list`). Before finishing a change: `task check`.

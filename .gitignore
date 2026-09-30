@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# build output
+/dist
+/.astro
+
+# misc
+.DS_Store
+npm-debug.log*
+
+# env files
+.env*
+!.env.example
+
+# Task checksums
+.task/

@@ -1,0 +1,284 @@
+---
+// The launch moment: midnight in Madrid (CET, UTC+1) on 11 November 2026.
+const LAUNCH = "2026-11-11T00:00:00+01:00";
+const launchLabel = "November 11, 2026";
+
+const title = "Almena ID";
+const description =
+  "Almena ID — a self-sovereign identity platform. Launching November 11, 2026.";
+
+const units = [
+  { key: "days", label: "Days" },
+  { key: "hours", label: "Hours" },
+  { key: "minutes", label: "Minutes" },
+  { key: "seconds", label: "Seconds" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#17181c" />
+    <link rel="canonical" href="https://almena.id/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://almena.id/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://almena.id/og-image.png" />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <main>
+      <svg
+        class="logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="136 136 752 752"
+        role="img"
+        aria-label="Almena ID logo"
+      >
+        <g stroke="currentColor" stroke-width="24" stroke-linecap="round">
+          <line x1="512" y1="237" x2="237" y2="785"></line>
+          <line x1="512" y1="237" x2="785" y2="785"></line>
+          <line x1="237" y1="785" x2="646" y2="507"></line>
+        </g>
+        <g fill="currentColor">
+          <circle cx="512" cy="237" r="94"></circle>
+          <circle cx="237" cy="785" r="94"></circle>
+          <circle cx="785" cy="785" r="94"></circle>
+        </g>
+      </svg>
+
+      <h1>Almena ID</h1>
+      <p class="tagline">Self-sovereign identity. Coming soon.</p>
+
+      <div class="countdown" data-launch={LAUNCH} role="timer" aria-live="off">
+        {
+          units.map((unit) => (
+            <div class="unit">
+              <span class="value" data-unit={unit.key}>
+                --
+              </span>
+              <span class="label">{unit.label}</span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="launched" hidden>We are live.</p>
+
+      <p class="date">
+        <time datetime={LAUNCH}>{launchLabel}</time>
+      </p>
+    </main>
+
+    <footer>
+      <a class="github" href="https://github.com/almena-id" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+          ></path>
+        </svg>
+        github.com/almena-id
+      </a>
+      <span>&copy; 2026 Almena ID</span>
+    </footer>
+
+    <script>
+      const countdown = document.querySelector<HTMLElement>(".countdown")!;
+      const launched = document.querySelector<HTMLElement>(".launched")!;
+      const target = Date.parse(countdown.dataset.launch!);
+      const cells = Object.fromEntries(
+        [...countdown.querySelectorAll<HTMLElement>("[data-unit]")].map((el) => [
+          el.dataset.unit!,
+          el,
+        ]),
+      );
+
+      const pad = (n: number) => String(n).padStart(2, "0");
+
+      function tick() {
+        const left = Math.max(0, target - Date.now());
+        const s = Math.floor(left / 1000);
+        cells.days.textContent = String(Math.floor(s / 86400));
+        cells.hours.textContent = pad(Math.floor(s / 3600) % 24);
+        cells.minutes.textContent = pad(Math.floor(s / 60) % 60);
+        cells.seconds.textContent = pad(s % 60);
+        if (left === 0) {
+          countdown.hidden = true;
+          launched.hidden = false;
+          return;
+        }
+        setTimeout(tick, 1000 - (Date.now() % 1000));
+      }
+
+      tick();
+    </script>
+
+    <style is:global>
+      :root {
+        --bg: #17181c;
+        --text: #f4f4f6;
+        --muted: #9a9ca5;
+        --brand: #eb7229;
+        --surface: #1f2126;
+        --border: #2c2f36;
+        color-scheme: dark;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        background:
+          radial-gradient(
+            ellipse 60% 45% at 50% 30%,
+            rgb(235 114 41 / 0.12),
+            transparent 70%
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+
+    <style>
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 3rem 1rem 2rem;
+        text-align: center;
+      }
+
+      .logo {
+        width: clamp(88px, 22vw, 144px);
+        height: auto;
+        color: var(--brand);
+        margin-bottom: 0.5rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.25rem, 8vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        margin: 0 0 1.5rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+      }
+
+      .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(0.5rem, 2.5vw, 1rem);
+        width: min(100%, 34rem);
+      }
+
+      .countdown[hidden] {
+        display: none;
+      }
+
+      .unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        padding: clamp(0.75rem, 3vw, 1.25rem) 0.25rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+
+      .value {
+        font-size: clamp(1.75rem, 8vw, 3rem);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .label {
+        color: var(--muted);
+        font-size: clamp(0.65rem, 2.4vw, 0.8rem);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .launched {
+        margin: 0;
+        color: var(--brand);
+        font-size: clamp(1.5rem, 6vw, 2.25rem);
+        font-weight: 700;
+      }
+
+      .date {
+        margin: 0.75rem 0 0;
+        color: var(--brand);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .github {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+
+      .github:hover,
+      .github:focus-visible {
+        color: var(--brand);
+      }
+
+      .github svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    </style>
+  </body>
+</html>
