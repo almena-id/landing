@@ -4,7 +4,7 @@ The public face of the project at `almena.id` and `www.almena.id`: the logo, the
 
 ## Layout
 
-- `src/pages/index.astro` — the one page: markup, the countdown script and its styles. The launch moment is `LAUNCH` at the top (midnight in Madrid, 11 November 2026); once it passes, the countdown gives way to "We are live."
+- `src/pages/index.astro` — the one page: markup, the countdown script, its styles and Vercel Web Analytics (`<Analytics />` from `@vercel/analytics/astro`). The launch moment is `LAUNCH` at the top (midnight in Madrid, 11 November 2026); once it passes, the countdown gives way to "We are live."
 - `public/` — served as is: `favicon.svg` (the logo, as in `../registry/app/icon.svg`), `apple-touch-icon.png` and `og-image.png` (from `../wallet/assets/branding`).
 - `nginx.conf` — the container's server: the files from `dist/`, `/health`, long caching for `/_astro/`.
 
