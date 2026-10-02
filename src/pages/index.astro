@@ -1,5 +1,6 @@
 ---
 import Analytics from "@vercel/analytics/astro";
+import { Font } from "astro:assets";
 
 // The launch moment: midnight in Madrid (CET, UTC+1) on 11 November 2026.
 const LAUNCH = "2026-11-11T00:00:00+01:00";
@@ -27,6 +28,9 @@ const description =
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://almena.id/og-image.png" />
     <meta name="twitter:card" content="summary" />
+    <Font cssVariable="--font-brand" preload />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" />
     <Analytics />
   </head>
   <body>
@@ -107,14 +111,7 @@ const description =
           ),
           var(--bg);
         color: var(--text);
-        font-family:
-          system-ui,
-          -apple-system,
-          "Segoe UI",
-          Roboto,
-          "Helvetica Neue",
-          Arial,
-          sans-serif;
+        font-family: var(--font-sans);
         -webkit-font-smoothing: antialiased;
       }
     </style>
@@ -140,6 +137,7 @@ const description =
 
       h1 {
         margin: 0;
+        font-family: var(--font-brand);
         font-size: clamp(2.25rem, 8vw, 4rem);
         font-weight: 700;
         letter-spacing: -0.02em;
@@ -154,7 +152,8 @@ const description =
       .date {
         margin: 0.75rem 0 0;
         color: var(--brand);
-        font-weight: 600;
+        font-family: var(--font-mono);
+        font-weight: 500;
         letter-spacing: 0.02em;
       }
 
