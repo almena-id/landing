@@ -8,13 +8,6 @@ const launchLabel = "November 11, 2026";
 const title = "Almena ID";
 const description =
   "Almena ID — a self-sovereign identity platform. Launching November 11, 2026.";
-
-const units = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Minutes" },
-  { key: "seconds", label: "Seconds" },
-];
 ---
 
 <!doctype html>
@@ -60,20 +53,6 @@ const units = [
       <h1>Almena ID</h1>
       <p class="tagline">Self-sovereign identity. Coming soon.</p>
 
-      <div class="countdown" data-launch={LAUNCH} role="timer" aria-live="off">
-        {
-          units.map((unit) => (
-            <div class="unit">
-              <span class="value" data-unit={unit.key}>
-                --
-              </span>
-              <span class="label">{unit.label}</span>
-            </div>
-          ))
-        }
-      </div>
-      <p class="launched" hidden>We are live.</p>
-
       <p class="date">
         <time datetime={LAUNCH}>{launchLabel}</time>
       </p>
@@ -91,37 +70,6 @@ const units = [
       </a>
       <span>&copy; 2026 Almena ID</span>
     </footer>
-
-    <script>
-      const countdown = document.querySelector<HTMLElement>(".countdown")!;
-      const launched = document.querySelector<HTMLElement>(".launched")!;
-      const target = Date.parse(countdown.dataset.launch!);
-      const cells = Object.fromEntries(
-        [...countdown.querySelectorAll<HTMLElement>("[data-unit]")].map((el) => [
-          el.dataset.unit!,
-          el,
-        ]),
-      );
-
-      const pad = (n: number) => String(n).padStart(2, "0");
-
-      function tick() {
-        const left = Math.max(0, target - Date.now());
-        const s = Math.floor(left / 1000);
-        cells.days.textContent = String(Math.floor(s / 86400));
-        cells.hours.textContent = pad(Math.floor(s / 3600) % 24);
-        cells.minutes.textContent = pad(Math.floor(s / 60) % 60);
-        cells.seconds.textContent = pad(s % 60);
-        if (left === 0) {
-          countdown.hidden = true;
-          launched.hidden = false;
-          return;
-        }
-        setTimeout(tick, 1000 - (Date.now() % 1000));
-      }
-
-      tick();
-    </script>
 
     <style is:global>
       :root {
@@ -198,52 +146,9 @@ const units = [
       }
 
       .tagline {
-        margin: 0 0 1.5rem;
+        margin: 0;
         color: var(--muted);
         font-size: clamp(1rem, 3.5vw, 1.25rem);
-      }
-
-      .countdown {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: clamp(0.5rem, 2.5vw, 1rem);
-        width: min(100%, 34rem);
-      }
-
-      .countdown[hidden] {
-        display: none;
-      }
-
-      .unit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.35rem;
-        padding: clamp(0.75rem, 3vw, 1.25rem) 0.25rem;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-      }
-
-      .value {
-        font-size: clamp(1.75rem, 8vw, 3rem);
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-        line-height: 1;
-      }
-
-      .label {
-        color: var(--muted);
-        font-size: clamp(0.65rem, 2.4vw, 0.8rem);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-
-      .launched {
-        margin: 0;
-        color: var(--brand);
-        font-size: clamp(1.5rem, 6vw, 2.25rem);
-        font-weight: 700;
       }
 
       .date {
