@@ -11,7 +11,7 @@ The public face of the project at `almena.id` and `www.almena.id`: the logo, the
 
 ## Rules
 
-- Orange `#eb7229` is the landing's identity, Almena's original orange (the wallet's default accent): `--brand` in `src/pages/index.astro` (the logo, the date, the link hover, the glow) and `public/favicon.svg`. The identity colours across Almena: status cyan `#3fe0ff`, catalog blue `#2563eb`, registry green `#1f9d55`, mediator blue `#2f6fed`, landing orange `#eb7229`, docu yellow `#f2b705`, the wallet the person's choice (orange by default).
+- Orange `#eb7229` is the landing's identity, Almena's original orange (the wallet's default accent): `--brand` in `src/pages/index.astro` (the logo, the date, the link hover, the glow) and `public/favicon.svg`. The identity colours across Almena: status cyan `#3fe0ff`, catalog blue `#2563eb`, registry green `#1f9d55`, mediator magenta `#d63384`, landing orange `#eb7229`, docu yellow `#f2b705`, the wallet the person's choice (orange by default).
 
 - Everything is written in English.
 - `almena.id` is also the identity domain: the edge sends the DID paths (`/.well-known/*`, `/ids/*`, `/{slug}/did.json`) to the API, and only the rest to this site. The page must not use those paths.
