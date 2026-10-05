@@ -8,7 +8,7 @@ const launchLabel = "November 11, 2026";
 
 const title = "Almena ID";
 const description =
-  "Almena ID — a self-sovereign identity platform. Launching November 11, 2026.";
+  "Almena ID — a self-sovereign identity platform. Public beta November 11, 2026.";
 ---
 
 <!doctype html>
@@ -54,11 +54,14 @@ const description =
         </g>
       </svg>
 
-      <h1>Almena ID</h1>
+      <h1>Almena ID <span class="badge">Beta</span></h1>
       <p class="tagline">Self-sovereign identity. Coming soon.</p>
 
       <p class="date">
-        <time datetime={LAUNCH}>{launchLabel}</time>
+        Public beta · <time datetime={LAUNCH}>{launchLabel}</time>
+      </p>
+      <p class="note">
+        A first public beta: expect rough edges, and tell us about them.
       </p>
     </main>
 
@@ -143,6 +146,21 @@ const description =
         letter-spacing: -0.02em;
       }
 
+      .badge {
+        display: inline-block;
+        margin-left: 0.5rem;
+        padding: 0.2em 0.55em;
+        border: 1px solid var(--brand);
+        border-radius: 999px;
+        color: var(--brand);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+
       .tagline {
         margin: 0;
         color: var(--muted);
@@ -155,6 +173,13 @@ const description =
         font-family: var(--font-mono);
         font-weight: 500;
         letter-spacing: 0.02em;
+      }
+
+      .note {
+        margin: 0;
+        max-width: 28rem;
+        color: var(--muted);
+        font-size: 0.9rem;
       }
 
       footer {
