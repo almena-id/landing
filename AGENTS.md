@@ -14,5 +14,5 @@ The public face of the project at `almena.id` and `www.almena.id`: the logo, the
 - Orange `#eb7229` is the landing's identity, Almena's original orange: `--brand` in `src/pages/index.astro` (the logo, the date, the link hover, the glow) and `public/favicon.svg`.
 
 - Everything is written in English.
-- `almena.id` is also the identity domain: the edge sends the DID paths (`/.well-known/*`, `/ids/*`, `/{slug}/did.json`) to the API, and only the rest to this site. The page must not use those paths.
+- `almena.id` is also the identity domain: the edge sends the DID paths (`/.well-known/*`, `/ids/*`, `/schemas/*`) and the wallet's channel (under `/api/v1/`) to the API, and only the rest to this site. The page must not use those paths.
 - Tasks live in `Taskfile.yml` (`task --list`). Before finishing a change: `task check`.

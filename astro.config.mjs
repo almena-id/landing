@@ -4,6 +4,11 @@ import { defineConfig, fontProviders } from "astro/config";
 // A static site: `astro build` writes plain files to dist/, served as they are.
 export default defineConfig({
   site: "https://almena.id",
+  // `task dev` behind the proxy (../develop): let the site's public hosts
+  // reach the dev server.
+  server: {
+    allowedHosts: ["almena.id", "www.almena.id"],
+  },
   // The portals' typefaces, downloaded when building and served from dist/
   // (never from Google by the visitor): Chakra Petch for the brand and the
   // headings, Inter for the text, JetBrains Mono for the date.
