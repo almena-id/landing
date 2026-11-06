@@ -2,13 +2,9 @@
 import Analytics from "@vercel/analytics/astro";
 import { Font } from "astro:assets";
 
-// The launch moment: midnight in Madrid (CET, UTC+1) on 11 November 2026.
-const LAUNCH = "2026-11-11T00:00:00+01:00";
-const launchLabel = "November 11, 2026";
-
 const title = "Almena ID";
 const description =
-  "Almena ID — a self-sovereign identity platform. Public beta November 11, 2026.";
+  "Almena ID — a self-sovereign identity platform. Coming soon.";
 ---
 
 <!doctype html>
@@ -57,9 +53,6 @@ const description =
       <h1>Almena ID <span class="badge">Beta</span></h1>
       <p class="tagline">Self-sovereign identity. Coming soon.</p>
 
-      <p class="date">
-        Public beta · <time datetime={LAUNCH}>{launchLabel}</time>
-      </p>
       <p class="note">
         A first public beta: expect rough edges, and tell us about them.
       </p>
@@ -167,16 +160,8 @@ const description =
         font-size: clamp(1rem, 3.5vw, 1.25rem);
       }
 
-      .date {
-        margin: 0.75rem 0 0;
-        color: var(--brand);
-        font-family: var(--font-mono);
-        font-weight: 500;
-        letter-spacing: 0.02em;
-      }
-
       .note {
-        margin: 0;
+        margin: 0.75rem 0 0;
         max-width: 28rem;
         color: var(--muted);
         font-size: 0.9rem;

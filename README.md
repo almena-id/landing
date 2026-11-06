@@ -1,6 +1,6 @@
 # Almena ID — landing page
 
-The landing page served at [almena.id](https://almena.id) and [www.almena.id](https://www.almena.id): the Almena ID logo and a countdown to the launch on November 11, 2026. Built with [Astro](https://astro.build) as a static site.
+The landing page served at [almena.id](https://almena.id) and [www.almena.id](https://www.almena.id): the Almena ID logo and a notice that the public beta is coming soon. Built with [Astro](https://astro.build) as a static site.
 
 ## Development
 
