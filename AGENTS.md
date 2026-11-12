@@ -4,7 +4,7 @@ The public face of the project at `almena.id` and `www.almena.id`: the logo, the
 
 ## Layout
 
-- `src/pages/index.astro` — the one page: markup, styles and Vercel Web Analytics (`<Analytics />` from `@vercel/analytics/astro`). No launch date is announced. What launches is a public beta, so the page carries a `Beta` badge next to the name and says so in the note below it.
+- `src/pages/index.astro` — the one page: markup and styles, with no analytics or other third-party script. No launch date is announced. What launches is a public beta, so the page carries a `Beta` badge next to the name and says so in the note below it.
 - `public/` — served as is: `favicon.svg` (the logo, as in `../registry/app/icon.svg`), `apple-touch-icon.png` and `og-image.png` (from `../wallet/assets/branding`).
 - `astro.config.mjs` — the site and its typefaces (Astro's Fonts API, downloaded when building and served from `dist/`): Chakra Petch (`--font-brand`, the name), Inter (`--font-sans`, the text), JetBrains Mono (`--font-mono`, the badge), as in the portals.
 - `nginx.conf` — the container's server: the files from `dist/`, `/health`, long caching for `/_astro/`.
